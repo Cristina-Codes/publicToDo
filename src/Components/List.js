@@ -55,6 +55,7 @@ const List = ({ dayPrefix }) => {
     <div className="list" id={`${dayPrefix}List`}>
       {toDos.map((toDo) => {
         const itemKey = toDo.key;
+        const isChecked = toDo.item[1];
 
         return (
           <div className="toDoItem" key={itemKey}>
@@ -63,13 +64,25 @@ const List = ({ dayPrefix }) => {
                 Checkbox for {toDo.item}
               </label>
 
-              <input
-                type={"checkbox"}
-                id={itemKey}
-                onChange={() => {
-                  handleCheck(dayPrefix, itemKey);
-                }}
-              />
+              {isChecked ? (
+                <input
+                  type={"checkbox"}
+                  id={itemKey}
+                  onChange={() => {
+                    handleCheck(dayPrefix, itemKey);
+                  }}
+                  checked
+                />
+              ) : (
+                <input
+                  type={"checkbox"}
+                  id={itemKey}
+                  onChange={() => {
+                    handleCheck(dayPrefix, itemKey);
+                  }}
+                />
+              )}
+
               <FontAwesomeIcon
                 icon={faTrashCan}
                 onClick={() => {
