@@ -2,20 +2,17 @@
 import firebase from "../firebase";
 // Modules
 import { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, remove } from "firebase/database";
+import { getDatabase, ref, onValue, remove, get, set } from "firebase/database";
 // Styling
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 const List = ({ dayPrefix }) => {
   const [toDos, setToDos] = useState([]);
-  const [checkedKeys, setCheckedKeys] = useState([]);
 
   useEffect(() => {
     const db = getDatabase(firebase);
     const database = ref(db, `/${dayPrefix}`);
-    const checkedItems = JSON.parse(localStorage.getItem("checked"));
-    // setCheckedKeys(checkedItems);
 
     onValue(database, (response) => {
       const data = response.val();
@@ -34,41 +31,24 @@ const List = ({ dayPrefix }) => {
     const itemRef = ref(db, `/${dayPrefix}/${itemKey}`);
 
     remove(itemRef);
-    setCheckedKeys((prev) =>
-      prev.map((key) => {
-        if (itemKey !== key) {
-          return key;
-        }
-      })
-    );
   };
 
-  const handleCheck = (e, itemKey) => {
-    const isItChecked = e.target.checked;
+  const handleCheck = (dayPrefix, itemKey) => {
+    const db = getDatabase(firebase);
+    const itemRef = ref(db, `/${dayPrefix}/${itemKey}`);
 
-    if (isItChecked) {
-      const updateThis = updatingKeys();
-      updateThis.push(itemKey);
+    get(itemRef).then((snapshot) => {
+      const data = snapshot.val();
+      const theTask = data[0];
 
-      localStorage.setItem("checked", JSON.stringify(updateThis)); //only adds the latest one rather than appending on
-      // I need to be updating an object/array that gets set to key "checked"
-    } else {
-      setCheckedKeys((prev) =>
-        prev.map((key) => {
-          if (itemKey !== key) {
-            return key;
-          }
-        })
-      );
-    }
-  };
-
-  const updatingKeys = () => {
-    if (checkedKeys === null) {
-      return [];
-    } else {
-      return [...checkedKeys];
-    }
+      if (data[1] === false) {
+        const updatedTask = [theTask, true];
+        set(itemRef, updatedTask);
+      } else {
+        const updatedTask = [theTask, false];
+        set(itemRef, updatedTask);
+      }
+    });
   };
 
   return (
@@ -82,24 +62,12 @@ const List = ({ dayPrefix }) => {
               <label htmlFor={itemKey} className="sr-only">
                 Checkbox for {toDo.item}
               </label>
-              {/* {
-                  checkedKeys.forEach((key) => {
-                    console.log(key);
-                  }) 
-                  // ? 
-                  // <input 
-                  //   type={"checkbox"} 
-                  //   id={itemKey} 
-                  //   onClick={(e) => {handleCheck(e, itemKey)}} 
-                  //   defaultChecked
-                  // />
-                  // :
-                } */}
+
               <input
                 type={"checkbox"}
                 id={itemKey}
-                onClick={(e) => {
-                  handleCheck(e, itemKey);
+                onChange={() => {
+                  handleCheck(dayPrefix, itemKey);
                 }}
               />
               <FontAwesomeIcon

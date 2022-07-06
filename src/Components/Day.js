@@ -19,6 +19,7 @@ const Day = ({ day }) => {
 
   const handleInput = (e) => {
     e.preventDefault();
+
     const toDo = e.target.parentNode[0].value;
     const whitespaceCheck = /(?!^\s+$)^.*$/m;
 
@@ -26,7 +27,8 @@ const Day = ({ day }) => {
       const dayId = e.target.parentNode[0].id;
       setDayRef(dayId);
 
-      setAddedToDo(toDo);
+      const newTask = [toDo, false];
+      setAddedToDo(newTask);
 
       e.target.parentNode[0].value = "";
     } else {
