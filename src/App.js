@@ -1,23 +1,27 @@
-import logo from './logo.svg';
+//Styling
 import './App.css';
 
-function App() {
+//Components
+import Day from './Components/Day';
+
+
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="wrapper">
+        <h1>To Do</h1>
       </header>
+
+      <main className="wrapper memo">
+        <Day day={'Monday'}/>
+        <Day day={'Tuesday'}/>
+        <Day day={'Wednesday'}/>
+        <Day day={'Thursday'}/>
+        <Day day={'Friday'}/>
+        <Day day={'Saturday'}/>
+        <Day day={'Sunday'}/>
+        <Day day={'Anyday'}/>
+      </main>{/* .wrapper .memo END */}
     </div>
   );
 }
