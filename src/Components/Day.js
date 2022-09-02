@@ -14,6 +14,7 @@ import { getDatabase, ref, push } from "firebase/database";
 const Day = ({ day }) => {
   const [addedToDo, setAddedToDo] = useState();
   const [dayRef, setDayRef] = useState();
+  const [when, setWhen] = useState();
 
   const dayPrefix = day.split("").splice(0, 3).join("");
 
@@ -21,14 +22,16 @@ const Day = ({ day }) => {
     e.preventDefault();
 
     const toDo = e.target.parentNode[0].value;
+    const when = e.target.parentNode[1].value;
     const whitespaceCheck = /(?!^\s+$)^.*$/m;
 
     if (toDo.match(whitespaceCheck) !== null) {
       const dayId = e.target.parentNode[0].id;
       setDayRef(dayId);
 
-      const newTask = [toDo, false];
+      const newTask = [toDo];
       setAddedToDo(newTask);
+      setWhen(when);
 
       e.target.parentNode[0].value = "";
     } else {
@@ -38,7 +41,7 @@ const Day = ({ day }) => {
 
   useEffect(() => {
     const db = getDatabase(firebase);
-    const thisDay = ref(db, `/${dayRef}`);
+    const thisDay = ref(db, `/${dayRef}/${when}`);
 
     push(thisDay, addedToDo);
   }, [addedToDo]);
@@ -48,6 +51,15 @@ const Day = ({ day }) => {
       <form className="addToDo">
         <label htmlFor={dayPrefix}>{day}</label>
         <input type="text" id={dayPrefix} />
+
+        <select>
+          <option value="Weekly">Weekly</option>
+          <option value="Morning">Morning</option>
+          <option value="Afternoon">Afternoon</option>
+          <option value="Evening">Evening</option>
+          <option value="Anytime">Anytime</option>
+        </select>
+
         <FontAwesomeIcon
           className="button"
           icon={faPlus}
