@@ -16,7 +16,7 @@ h1 {
 }
 
 .day {
-  width: 12.5%;
+  width: calc(100% / 8);
   min-width: 135px;
   background-color: lavender;
   border: 2px ridge black;
@@ -63,4 +63,4 @@ input {
 
 .toDoItem p {
   width: 90%;
-}/*# sourceMappingURL=App.css.map */
+}

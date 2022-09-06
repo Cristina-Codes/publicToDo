@@ -12,7 +12,7 @@ import firebase from "../firebase";
 import { getDatabase, ref, push } from "firebase/database";
 
 const Day = ({ day }) => {
-  const [addedToDo, setAddedToDo] = useState();
+  const [addedToDo, setAddedToDo] = useState([]);
   const [dayRef, setDayRef] = useState();
   const [when, setWhen] = useState();
 
@@ -29,7 +29,7 @@ const Day = ({ day }) => {
       const dayId = e.target.parentNode[0].id;
       setDayRef(dayId);
 
-      const newTask = [toDo];
+      const newTask = [toDo, false];
       setAddedToDo(newTask);
       setWhen(when);
 

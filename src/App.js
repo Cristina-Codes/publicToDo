@@ -1,9 +1,8 @@
 //Styling
-import './App.css';
+import "./App.scss";
 
 //Components
-import Day from './Components/Day';
-
+import Day from "./Components/Day";
 
 const App = () => {
   return (
@@ -13,17 +12,18 @@ const App = () => {
       </header>
 
       <main className="wrapper memo">
-        <Day day={'Monday'}/>
-        <Day day={'Tuesday'}/>
-        <Day day={'Wednesday'}/>
-        <Day day={'Thursday'}/>
-        <Day day={'Friday'}/>
-        <Day day={'Saturday'}/>
-        <Day day={'Sunday'}/>
-        <Day day={'Anyday'}/>
-      </main>{/* .wrapper .memo END */}
+        <Day day={"Monday"} />
+        <Day day={"Tuesday"} />
+        <Day day={"Wednesday"} />
+        <Day day={"Thursday"} />
+        <Day day={"Friday"} />
+        <Day day={"Saturday"} />
+        <Day day={"Sunday"} />
+        <Day day={"Anyday"} />
+      </main>
+      {/* .wrapper .memo END */}
     </div>
   );
-}
+};
 
 export default App;

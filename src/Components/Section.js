@@ -2,7 +2,7 @@
 import firebase from "../firebase";
 // Modules
 import { useState, useEffect } from "react";
-import { getDatabase, ref, onValue, remove } from "firebase/database";
+import { getDatabase, ref, onValue, remove, set, get } from "firebase/database";
 // Styling
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -33,30 +33,30 @@ const Section = ({ dayPrefix, title }) => {
     remove(itemRef);
   };
 
-  // const handleCheck = (dayPrefix, itemKey) => {
-  //   const db = getDatabase(firebase);
-  //   const itemRef = ref(db, `/${dayPrefix}/${itemKey}`);
+  const handleCheck = (dayPrefix, title, itemKey) => {
+    const db = getDatabase(firebase);
+    const itemRef = ref(db, `/${dayPrefix}/${title}/${itemKey}`);
 
-  //   get(itemRef).then((snapshot) => {
-  //     const data = snapshot.val();
-  //     const theTask = data[0];
+    get(itemRef).then((snapshot) => {
+      const data = snapshot.val();
+      const theTask = data[0];
 
-  //     if (data[1] === false) {
-  //       const updatedTask = [theTask, true];
-  //       set(itemRef, updatedTask);
-  //     } else {
-  //       const updatedTask = [theTask, false];
-  //       set(itemRef, updatedTask);
-  //     }
-  //   });
-  // };
+      if (data[1] === false) {
+        const updatedTask = [theTask, true];
+        set(itemRef, updatedTask);
+      } else {
+        const updatedTask = [theTask, false];
+        set(itemRef, updatedTask);
+      }
+    });
+  };
 
   return (
     <>
       <h3>{title}</h3>
       {toDos.map((toDo) => {
         const itemKey = toDo.key;
-        // const isChecked = toDo.item[1];
+        const isChecked = toDo.item[1];
 
         return (
           <div className="toDoItem" key={itemKey}>
@@ -65,12 +65,12 @@ const Section = ({ dayPrefix, title }) => {
                 Checkbox for {toDo.item}
               </label>
 
-              {/* {isChecked ? (
+              {isChecked ? (
                 <input
                   type={"checkbox"}
                   id={itemKey}
                   onChange={() => {
-                    handleCheck(dayPrefix, itemKey);
+                    handleCheck(dayPrefix, title, itemKey);
                   }}
                   checked
                 />
@@ -79,10 +79,10 @@ const Section = ({ dayPrefix, title }) => {
                   type={"checkbox"}
                   id={itemKey}
                   onChange={() => {
-                    handleCheck(dayPrefix, itemKey);
+                    handleCheck(dayPrefix, title, itemKey);
                   }}
                 />
-              )} */}
+              )}
 
               <FontAwesomeIcon
                 icon={faTrashCan}
