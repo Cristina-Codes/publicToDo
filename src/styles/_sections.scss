@@ -1,0 +1,70 @@
+.section {
+  border-bottom: 1px black solid;
+}
+
+.section h3 {
+  text-decoration: underline;
+  margin: 5px 0;
+  font-size: 1.4rem;
+}
+
+.toDoItem {
+  display: flex;
+  padding: 5px 0;
+}
+
+.toDoItem form {
+  width: 10%;
+  margin-top: 0;
+}
+
+input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 16px;
+  width: 16px;
+}
+
+.checkmark {
+  height: 16px;
+  width: 16px;
+  background-color: #eee;
+  border: 1px solid #7ea172;
+}
+
+input:checked ~ .checkmark {
+  background-color: #502419;
+  border: none;
+}
+
+input:checked ~ .checkmark:after {
+  display: block;
+  position: relative;
+  top: 2px;
+  left: 6px;
+}
+
+.checkmark:after {
+  content: "";
+  display: none;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.trash {
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.toDoItem p {
+  width: 90%;
+  font-size: 1.3rem;
+}

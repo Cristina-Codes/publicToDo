@@ -52,7 +52,7 @@ const Section = ({ dayPrefix, title }) => {
   };
 
   return (
-    <>
+    <div className="section">
       <h3>{title}</h3>
       {toDos.map((toDo) => {
         const itemKey = toDo.key;
@@ -60,7 +60,7 @@ const Section = ({ dayPrefix, title }) => {
 
         return (
           <div className="toDoItem" key={itemKey}>
-            <form className="iconContainer">
+            <form>
               <label htmlFor={itemKey} className="sr-only">
                 Checkbox for {toDo.item}
               </label>
@@ -83,8 +83,10 @@ const Section = ({ dayPrefix, title }) => {
                   }}
                 />
               )}
+              <span className="checkmark"></span>
 
               <FontAwesomeIcon
+                className="trash"
                 icon={faTrashCan}
                 onClick={() => {
                   handleClick(dayPrefix, title, itemKey);
@@ -95,7 +97,7 @@ const Section = ({ dayPrefix, title }) => {
           </div>
         );
       })}
-    </>
+    </div>
   );
 };
 

@@ -50,7 +50,7 @@ const Day = ({ day }) => {
     <div className="day" id={day}>
       <form className="addToDo">
         <label htmlFor={dayPrefix}>{day}</label>
-        <input type="text" id={dayPrefix} />
+        <textarea type="text" id={dayPrefix} />
 
         <select>
           <option value="Weekly">Weekly</option>

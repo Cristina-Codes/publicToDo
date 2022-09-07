@@ -1,0 +1,70 @@
+$one: #75f4f4;
+$two: #90e0f3;
+$three: #b8b3e9;
+$four: #d999b9;
+$five: #d17b88;
+
+// #253031;
+// #315659;
+// #2978a0;
+// #bcab79;
+// #c6e0ff;
+
+// #502419;
+// #7ea172;
+// #c7cb85;
+// #e7a977;
+// #ebbe9b;
+
+// #1b998b;
+// #2d3047;
+// #fffd82;
+// #ff9b71;
+// #e84855;
+
+.day {
+  width: calc(100% / 8);
+  height: auto;
+  min-width: 135px;
+  background-color: #c7cb85;
+  border: 2px ridge #7ea172;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 10px;
+}
+
+label {
+  font-size: 1.8rem;
+}
+
+textarea {
+  min-height: 50px;
+  resize: none;
+  font-size: 1.3rem;
+  margin: 5px 0;
+  background: rgb(247, 244, 244);
+}
+
+select {
+  font-size: 1.3rem;
+  background: rgb(247, 244, 244);
+  border: none;
+  padding: 3px 0;
+}
+
+.button {
+  width: 15%;
+  padding: 5px;
+  margin: 5px auto;
+  background: #e7a977;
+  border: 1px solid #7ea172;
+  // color: #e7a977;
+}
+
+.button:hover,
+.button:focus {
+  background: #7ea172;
+}

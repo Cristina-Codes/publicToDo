@@ -1,66 +1,24 @@
+$baseFont: "Karla", sans-serif;
+$secondaryFont: "Merriweather", serif;
+
+body {
+  background: #ebbe9b;
+}
+
 .wrapper {
   max-width: 1200px;
   width: 98%;
   margin: 0 auto;
   text-align: center;
-}
-
-.memo {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  font-family: $baseFont;
+  color: #502419;
 }
 
 h1 {
   font-size: 4rem;
-}
-
-.day {
-  width: calc(100% / 8);
-  min-width: 135px;
-  background-color: lavender;
-  border: 2px ridge black;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  height: 80px;
-  margin: 20px 10px;
-}
-
-label {
-  font-size: 1.8rem;
-}
-
-input {
-  font-size: 1.5rem;
-  padding: 5px 0;
-  margin: 5px 0;
-}
-
-.button {
-  width: 20%;
-  padding: 5px;
-  margin: 0 auto;
-  background: gray;
-}
-
-.button:hover,
-.button:focus {
-  background: red;
-}
-
-.toDoItem {
-  display: flex;
-}
-
-.iconContainer {
-  width: 10%;
-  margin-top: 0;
-  max-height: 20px;
-}
-
-.toDoItem p {
-  width: 90%;
+  margin: 10px 0;
+  // font-family: $secondaryFont;
 }

@@ -8,10 +8,10 @@ const App = () => {
   return (
     <div className="App">
       <header className="wrapper">
-        <h1>To Do</h1>
+        <h1>My Week</h1>
       </header>
 
-      <main className="wrapper memo">
+      <main className="wrapper">
         <Day day={"Monday"} />
         <Day day={"Tuesday"} />
         <Day day={"Wednesday"} />
