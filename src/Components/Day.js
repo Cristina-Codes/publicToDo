@@ -53,10 +53,16 @@ const Day = ({ day }) => {
         <textarea type="text" id={dayPrefix} />
 
         <select>
-          <option value="Weekly">Weekly</option>
-          <option value="Morning">Morning</option>
-          <option value="Afternoon">Afternoon</option>
-          <option value="Evening">Evening</option>
+          {dayPrefix !== "Any" ? (
+            <>
+              <option value="Weekly">Weekly</option>
+              <option value="Morning">Morning</option>
+              <option value="Afternoon">Afternoon</option>
+              <option value="Evening">Evening</option>
+            </>
+          ) : (
+            <option value="jobTrack">Applications</option>
+          )}
           <option value="Anytime">Anytime</option>
         </select>
 
