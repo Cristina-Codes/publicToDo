@@ -60,9 +60,7 @@ const Day = ({ day }) => {
               <option value="Afternoon">Afternoon</option>
               <option value="Evening">Evening</option>
             </>
-          ) : (
-            <option value="jobTrack">Applications</option>
-          )}
+          ) : null}
           <option value="Anytime">Anytime</option>
         </select>
 
