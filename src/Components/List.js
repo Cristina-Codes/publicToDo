@@ -11,9 +11,7 @@ const List = ({ dayPrefix }) => {
           <Section dayPrefix={dayPrefix} title={"Afternoon"} />
           <Section dayPrefix={dayPrefix} title={"Evening"} />
         </>
-      ) : (
-        <Section dayPrefix={dayPrefix} title={"Applications"} />
-      )}
+      ) : null}
       <Section dayPrefix={dayPrefix} title={"Anytime"} />
     </div>
   );
